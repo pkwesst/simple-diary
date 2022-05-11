@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const DiaryEditor = ({ onCreate }) => {
+const DiaryEditor = React.memo(({ onCreate }) => {
   useEffect(() => {
     console.log("DiaryEditor 렌더");
   });
@@ -22,15 +22,11 @@ const DiaryEditor = ({ onCreate }) => {
 
   const handleSubmit = () => {
     if (state.author.length < 1) {
-      alert("작성자는 최소 1글자 이상 입력해주세요.");
-      // focus
       authorInput.current.focus();
       return;
     }
 
     if (state.content.length < 5) {
-      alert("일기 본문은 최소 5글자 이상 입력해주세요");
-      // focus
       contentInput.current.focus();
       return;
     }
@@ -40,7 +36,7 @@ const DiaryEditor = ({ onCreate }) => {
     setState({
       author: "",
       content: "",
-      emotion: "",
+      emotion: 1,
     });
   };
 
@@ -49,20 +45,20 @@ const DiaryEditor = ({ onCreate }) => {
       <h2>오늘의 일기</h2>
       <div>
         <input
-          name="author"
           ref={authorInput}
           value={state.author}
           onChange={handleChangeState}
+          name="author"
           placeholder="작성자"
           type="text"
         />
       </div>
       <div>
         <textarea
-          name="content"
           ref={contentInput}
           value={state.content}
           onChange={handleChangeState}
+          name="content"
           placeholder="일기"
           type="text"
         />
@@ -86,6 +82,5 @@ const DiaryEditor = ({ onCreate }) => {
       </div>
     </div>
   );
-};
-
-export default React.memo(DiaryEditor);
+});
+export default DiaryEditor;

@@ -22,7 +22,6 @@ const DiaryEditor = () => {
 
   const handleAddButtonClick = () => {
     alert("일기가 추가되었어요!");
-    return;
     console.log("추가될 일기 : ", diary);
 
     if (diary.author.length < 1) {
